@@ -1,0 +1,16 @@
+.main-form {
+    background-color: #fff;
+}
+
+.main-form-header {
+    background-color: #1abc9c;
+}
+
+.btn-success {
+    background-color: #1abc9c !important;
+    border-color: #1abc9c !important;
+}
+
+.main-color {
+    color: #1abc9c;
+}

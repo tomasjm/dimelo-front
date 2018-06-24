@@ -1,0 +1,32 @@
+<div class="container mt-5 animated fadeIn">
+    <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-12 col-md-11 col-lg-8 col-xl-6">
+            <div class="main-form shadow">
+                <div class="main-form-header text-center py-2">
+                    <h2 class="text-white">REGISTER</h2>
+                </div>
+                <div class="main-form-body px-5 mt-5 pb-3">
+                    <div class="form-group">
+                        <input [(ngModel)]="regUser.name" type="text" class="form-control c-flat" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="regUser.user" type="text" class="form-control c-flat" placeholder="Usuario">
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="regUser.email" type="email" class="form-control c-flat" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="regUser.password" type="password" class="form-control c-flat" placeholder="Contraseña">
+                    </div>
+                    <div class="form-group">
+                        <input #passwordConfirm type="password" class="form-control c-flat" placeholder="Confirmar contraseña">
+                    </div>
+                    <button (click)="register(passwordConfirm.value)" class="btn-success c-flat btn-block btn">Registrarse</button>
+                    <div class="text-center mt-3 mb-2">
+                        <a [routerLink]="['../../auth/login']" class="main-color">Iniciar sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

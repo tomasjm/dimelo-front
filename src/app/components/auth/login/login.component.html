@@ -1,0 +1,25 @@
+<div class="container mt-5 animated fadeIn">
+    <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-4">
+            <div class="main-form shadow">
+                <div class="main-form-header text-center py-2">
+                    <h2 class="text-white">LOGIN</h2>
+                </div>
+                <div class="main-form-body px-5 mt-5 pb-3">
+                    <div class="form-group">
+                        <input [(ngModel)]="loginUser.email" type="email" class="form-control c-flat" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="loginUser.password" type="password" class="form-control c-flat" placeholder="Contraseña">
+                    </div>
+                    <div class="boton">
+                        <button (click)="login()" class="btn btn-success btn-block c-flat">Ingresar</button>
+                    </div>
+                    <div class="text-center mt-2">
+                        <a [routerLink]="['../../auth/register']" class="main-color">Crear una nueva cuenta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
