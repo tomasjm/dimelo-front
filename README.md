@@ -1,5 +1,8 @@
 # Dimelo.pw Front-end
 
+![alt text](https://github.com/tomasjm/dimelo-front/blob/master/mainphoto.png?raw=true)
+
+
 Aplicación front-end de Dimelo.pw, desarrollado en Angular 6.
 
 Se utilizó Bootstrap 4 para el diseño.
