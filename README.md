@@ -1,6 +1,8 @@
 # Dimelo.pw Front-end
 
 ![alt text](https://github.com/tomasjm/dimelo-front/blob/master/mainphoto.png?raw=true)
+![alt text](https://github.com/tomasjm/dimelo-front/blob/master/profilephoto.png?raw=true)
+
 
 
 Aplicación front-end de Dimelo.pw, desarrollado en Angular 6.
