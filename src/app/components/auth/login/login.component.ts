@@ -25,7 +25,16 @@ export class LoginComponent implements OnInit {
     this._auth.sendLogin(data)
       .subscribe( (res: any) => {
         if (res.response) {
-         this._router.navigate(['u', res.user.user]);
+          if (res.user.banned === '1') {
+            alert('Has sido bloqueado de Dimelo.pw, si crees que es un error, contacta al desarrollador');
+          } else {
+            sessionStorage.setItem('user', JSON.stringify(res.user));
+            sessionStorage.setItem('auth_key', res.user.auth_key);
+            sessionStorage.setItem('valid_auth', 'true');
+            this._router.navigate(['u', res.user.user]);
+          }
+        } else {
+          alert(res.message);
         }
       });
   }

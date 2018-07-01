@@ -1,0 +1,157 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center mx-auto">
+    <a class="navbar-brand" routerLink="">
+        <h3 class="font-weight-light">Dimelo<span class="green">.pw</span></h3>
+    </a>
+</nav>
+<nav *ngIf="!userLogged" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/auth/login']"><i class="fas fa-sign-in-alt mr-2 green"></i>Ingresar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/auth/register']"><i class="fas fa-user-plus mr-2 green"></i>Registrarse</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" (click)="getAdmins()" data-toggle="modal" data-target="#getAdminModal"><i class="fas fa-question-circle mr-2 green"></i>Soporte</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav *ngIf="userLogged" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    <i class="fas fa-user-circle mr-2 green"></i>Mi Cuenta
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item text-white" routerLink="/u/{{userUrl}}" (click)="reload()"><i class="fas fa-user-alt mr-2 green"></i>Mi perfil</a>
+                    <a class="dropdown-item text-white cursor-pointer" (click)="loadUserInfo()" data-toggle="modal" data-target="#editUser"><i class="fas fa-user-edit mr-2 green"></i>Editar perfil</a>
+                    <a class="dropdown-item text-white cursor-pointer" (click)="loadUserPhoto()" data-toggle="modal" data-target="#editPhoto"><i class="fas fa-image mr-2 green"></i>Cambiar foto perfil</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" (click)="getAdmins()" data-toggle="modal" data-target="#getAdminModal"><i class="fas fa-question-circle mr-2 green"></i>Soporte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" (click)="cerrarSesion()"><i class="fas fa-sign-out-alt mr-2 green"></i>Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="modal fade c-flat" id="editUser" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content c-flat">
+            <div class="modal-header bg-green c-flat">
+                <h5 class="modal-title text-white">Editar información</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input maxlength="25" [(ngModel)]="updatedUser.name" type="text" class="form-control" placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input maxlength="20" [(ngModel)]="updatedUser.user" type="text" class="form-control" placeholder="Tu usuario">
+                    <small class="form-text text-muted">Esto equivale a tu url de perfil. http://dimelo.pw/u/usuario</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción de perfil</label>
+                    <textarea maxlength="300" [(ngModel)]="updatedUser.desc" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <input [(ngModel)]="updatedUser.postperm" class="form-check-input" type="checkbox">
+                    <label class="form-check-label">
+                      Permitir comentarios ánonimos
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger c-flat" data-dismiss="modal"><i class="fas fa-ban mr-2"></i>Cancelar</button>
+                <button type="button" class="btn btn-success c-flat" (click)="sendUpdateUser()"><i class="fas fa-save mr-2"></i>Guardar cambios</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade c-flat" id="editPhoto" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content c-flat">
+            <div class="modal-header bg-green c-flat">
+                <h5 class="modal-title text-white">Editar Foto Perfil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{{ mainUrl + 'files/' + userPhoto }}" alt="Avatar" class="img-thumbnail profile-img">
+                <div class="form-group mt-5">
+                    <button (click)="fileInput.click()" type="button" class="btn btn-success">Buscar imagen...</button>
+                    <p>{{ selectedPhoto.name }}</p>
+                    <input style="display: none;" #fileInput type="file" (change)="onFileSelected($event)" class="form-control-file">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger c-flat" data-dismiss="modal"><i class="fas fa-ban mr-2"></i>Cancelar</button>
+                <button type="button" (click)="photoUpload()" class="btn btn-success c-flat"><i class="fas fa-save mr-2"></i>Subir foto</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade c-flat" id="getAdminModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content c-flat">
+            <div class="modal-header bg-green c-flat">
+                <h5 class="modal-title text-white">Contactar Administración</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table font-weight-light">
+                        <thead>
+                            <tr>
+                                <th class="font-weight-bold green" scope="col">Rango</th>
+                                <th class="font-weight-bold green" scope="col">Nombre</th>
+                                <th class="font-weight-bold green" scope="col">Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let superadm of SuperAdminList">
+                                <th scope="row"><span class="badge badge-{{ superadm.role | getRole:'roleClass' }}">{{ superadm.role | getRole:'roleName' }}</span></th>
+                                <td>{{ superadm.name }}</td>
+                                <td class="green"><a routerLink="/u/{{ superadm.user }}" (click)="reload()" class="green cursor-pointer"><i>@{{ superadm.user }}</i></a></td>
+                            </tr>
+                            <tr *ngFor="let adm of AdminList">
+                                <th scope="row"><span class="badge badge-{{ adm.role | getRole:'roleClass' }}">{{ adm.role | getRole:'roleName' }}</span></th>
+                                <td>{{ adm.name }}</td>
+                                <td class="green"><a routerLink="/u/{{ adm.user }}" (click)="reload()" class="green cursor-pointer"><i>@{{ adm.user }}</i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success c-flat" data-dismiss="modal"><i class="fas fa-check mr-2"></i>Entendido!</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,4 +13,10 @@ export class AuthService {
   sendRegister(datos) {
     return this._http.post(this._globals.api + 'auth/register', datos);
   }
+  checkSession(datos) {
+    return this._http.post(this._globals.api + 'auth/check', datos);
+  }
+  getAdmins() {
+    return this._http.get(this._globals.api + 'stats/admin');
+  }
 }

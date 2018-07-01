@@ -1,0 +1,47 @@
+<footer class="footer bg-dark text-center">
+    <div class="container">
+        <span class="text-white font-weight-light">Dimelo<span class="green">.pw</span> &copy; 2018.</span><br>
+        <span class="green"><i class="fas fa-question-circle mr-2"></i><a (click)="getAdmins()" data-toggle="modal" data-target="#getAdminModal" class="text-white font-weight-light cursor-pointer">Soporte</a></span>
+    </div>
+</footer>
+
+<div class="modal fade c-flat" id="getAdminModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content c-flat">
+            <div class="modal-header bg-green c-flat">
+                <h5 class="modal-title text-white">Contactar Administración</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table font-weight-light">
+                        <thead>
+                            <tr>
+                                <th class="font-weight-bold green" scope="col">Rango</th>
+                                <th class="font-weight-bold green" scope="col">Nombre</th>
+                                <th class="font-weight-bold green" scope="col">Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let superadm of SuperAdminList">
+                                <th scope="row"><span class="badge badge-{{ superadm.role | getRole:'roleClass' }}">{{ superadm.role | getRole:'roleName' }}</span></th>
+                                <td>{{ superadm.name }}</td>
+                                <td class="green"><a routerLink="/u/{{ superadm.user }}" (click)="reload()" class="green cursor-pointer"><i>@{{ superadm.user }}</i></a></td>
+                            </tr>
+                            <tr *ngFor="let adm of AdminList">
+                                <th scope="row"><span class="badge badge-{{ adm.role | getRole:'roleClass' }}">{{ adm.role | getRole:'roleName' }}</span></th>
+                                <td>{{ adm.name }}</td>
+                                <td class="green"><a routerLink="/u/{{ adm.user }}" (click)="reload()" class="green cursor-pointer"><i>@{{ adm.user }}</i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success c-flat" data-dismiss="modal"><i class="fas fa-check mr-2"></i>Entendido!</button>
+            </div>
+        </div>
+    </div>
+</div>

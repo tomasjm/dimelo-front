@@ -25,9 +25,12 @@ export class RegisterComponent implements OnInit {
       this._auth.sendRegister(data)
         .subscribe( (res: any) => {
           if (res.response) {
-            this._router.navigate(['u', res.user.user]);
+            sessionStorage.setItem('user', JSON.stringify(res.user));
+            sessionStorage.setItem('auth_key', res.user.auth_key);
+            sessionStorage.setItem('valid_auth', 'true');
+            window.location.reload();
           } else {
-            alert(res.msg);
+            alert(res.message);
           }
         });
     } else {

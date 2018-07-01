@@ -1,0 +1,16 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #1abc9c !important;
+    border-color: #1abc9c !important;
+}
+
+.bg-green {
+    background-color: #1abc9c;
+}
+
+.green {
+    color: #1abc9c;
+}

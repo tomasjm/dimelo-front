@@ -1,27 +1,27 @@
-# DimeloFront
+# Dimelo.pw Front-end
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+Aplicación front-end de Dimelo.pw, desarrollado en Angular 6.
 
-## Development server
+Se utilizó Bootstrap 4 para el diseño.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Servidor de testing
 
-## Code scaffolding
+Para poder usar este codigo, deberás instalar Angular-Cli desde su página oficial.
+Una vez realizado esto, abre una terminal en la carpeta del proyecto y ejecuta:
+`npm install`
+`ng serve -o`
+Se abrirá una página con la dirección de `localhost:4800` donde se podrá utilizar esta aplicación.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Componentes y rutas
 
-## Build
+El proyecto tiene 2 secciones de componentes y sus rutas respectivas.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+### Componente Auth
 
-## Running unit tests
+Este componente, contiene algunos componentes hijos como:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Login
+#### Register
 
-## Running end-to-end tests
+#### Shared navbar and footer
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

@@ -1,0 +1,28 @@
+.green {
+    color: #16a085;
+}
+
+.dropdown-item:hover {
+    background-color: #2d3436;
+}
+
+.cursor-pointer:hover {
+    cursor: pointer;
+}
+
+.bg-green {
+    background-color: #16a085;
+}
+
+.btn-danger {
+    background-color: #e74c3c !important;
+}
+
+.btn-success {
+    background-color: #16a085 !important;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+}

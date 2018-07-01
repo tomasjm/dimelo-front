@@ -1,0 +1,47 @@
+.comment-img {
+    width: 50px;
+    height: 50px;
+    border: 1.5px solid #fff;
+    border-radius: 100px;
+}
+
+.cursorrial {
+    cursor: pointer;
+}
+
+.main-form {
+    background-color: #fff;
+}
+
+.form-header-user {
+    background-color: #1abc9c;
+}
+
+.form-header-superadm {
+    background-color: #e74c3c;
+}
+
+.form-header-adm {
+    background-color: #22a6b3;
+}
+
+.main-color {
+    color: #1abc9c;
+}
+
+.name {
+    margin-bottom: -5px;
+}
+
+.color-red {
+    color: #3498db;
+}
+
+.subtitle {
+    font-size: 12px;
+}
+
+.post-text {
+    white-space: pre-line;
+    word-wrap: break-word;
+}

@@ -1,0 +1,28 @@
+<div class="main-form shadow animated fadeIn">
+    <div *ngIf="!((!userLogged && postPerm) || userLogged)" class="alert alert-danger text-center" role="alert">
+        Este usuario, en estos momentos no permite comentarios ánonimos, regístrate para enviarle un comentario!
+    </div>
+    <div *ngIf="(!userLogged && postPerm) || userLogged">
+        <div *ngIf="!sendedPost">
+            <div class="form-group mx-3 pt-3">
+                <h5 class="main-color">Envia tu comentario/pregunta! <span class="font-weight-light" *ngIf="sameUser">Cuidado! Este es tu perfil!</span></h5>
+                <textarea [(ngModel)]="makePost.text" class="form-control c-flat" rows="3"></textarea>
+            </div>
+            <div *ngIf="postPerm">
+                <div *ngIf="userLogged" class="form-check mx-3">
+                    <input [(ngModel)]="makePost.anonymous" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <p class="main-color"><b>Enviar anonimamente?</b></p>
+                </div>
+            </div>
+            <div *ngIf="!postPerm" class="alert alert-danger text-center mx-3 c-flat" role="alert">
+                Cuidado! Este usuario, en estos momentos no permite comentarios ánonimos!
+            </div>
+            <div class="mt-2 mx-3 pb-3">
+                <button type="button" (click)="sendPost()" class="btn btn-success btn-block c-flat">Enviar comentario</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="sendedPost" class="alert alert-success text-center animated fadeIn" role="alert">
+    Comentario enviado correctamente!
+</div>
